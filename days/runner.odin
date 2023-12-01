@@ -47,13 +47,13 @@ run :: proc(day: int) {
     }
 
     fmt.println("===== Day", day, "- Stage 1 =====")
-    fmt.println(day_program.stage_1(input), "\n")
+    fmt.println("Answer:", day_program.stage_1(input), "\n")
 
     if day_program.stage_2 == nil {
         return
     }
     fmt.println("===== Day", day, "- Stage 2 =====")
-    fmt.println(day_program.stage_2(input), "\n")
+    fmt.println("Answer:", day_program.stage_2(input), "\n")
 
     return
 }
