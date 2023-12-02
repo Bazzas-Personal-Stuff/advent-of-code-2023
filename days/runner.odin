@@ -13,7 +13,8 @@ verbose: bool = false
 Challenge_Program :: struct {
     stage_1 : proc(input: []byte) -> int,
     stage_2 : proc(input: []byte) -> int,
-    test    : proc(t: ^testing.T)
+    test_1  : proc(t: ^testing.T),
+    test_2  : proc(t: ^testing.T),
 }
 
 Stage :: enum {
@@ -59,7 +60,7 @@ run :: proc(day: int) {
 }
 
 
-test :: proc(t: ^testing.T, day: int) {
+test_stage_1 :: proc(t: ^testing.T, day: int) {
     if day <= 0 || day > 25 {
         testing.error(t, "Invalid day: ", day)
         return
@@ -67,18 +68,55 @@ test :: proc(t: ^testing.T, day: int) {
 
     day_program := &registry[day]
 
-    if day_program.test == nil {
+    if day_program.test_1 == nil {
         testing.error(t, "Test proc doesn't exist for day:", day)
         return
     }
 
-    day_program.test(t)
+    day_program.test_1(t)
+    return
+}
+
+test_stage_2 :: proc(t: ^testing.T, day: int) {
+    if day <= 0 || day > 25 {
+        testing.error(t, "Invalid day: ", day)
+        return
+    }
+
+    day_program := &registry[day]
+
+    if day_program.test_1 == nil {
+        testing.error(t, "Test proc doesn't exist for day:", day)
+        return
+    }
+
+    day_program.test_2(t)
     return
 }
 
 
 // Helpers
+// =============================================================
 
 as_bytes :: proc(str: string) -> []byte {
     return transmute([]byte)str
 }
+
+// Wrappers to suppress logging when not in verbose mode
+print :: proc(args: ..any, sep := " ") {
+    if !verbose do return
+    fmt.print(..args, sep = sep)
+}
+
+println :: proc(args: ..any, sep := " ") {
+    if !verbose do return
+    fmt.println(..args, sep = sep)
+}
+
+
+printf :: proc(format: string, args: ..any) {
+    if !verbose do return
+    fmt.printf(format, ..args)
+}
+
+

@@ -22,10 +22,12 @@ main :: proc() {
         return
     }
 
+    days.verbose = true
     days.run(day)
 }
 
 run_all_days :: proc() {
+    days.verbose = false
     for i := 1; days.registry[i] != {}; i += 1{
         days.run(i)
     }
@@ -33,7 +35,9 @@ run_all_days :: proc() {
 
 
 @(test)
-test :: proc(t: ^testing.T) {
+test_stage_1 :: proc(t: ^testing.T) {
+    days.verbose = true
+
     if len(os.args) < 2 {
         fmt.println("Please enter the day you want to run as an argument.")
         testing.fail(t)
@@ -48,5 +52,26 @@ test :: proc(t: ^testing.T) {
         return
     }
 
-    days.test(t, day)
+    days.test_stage_1(t, day)
+}
+
+@(test)
+test_stage_2 :: proc(t: ^testing.T) {
+    days.verbose = true
+
+    if len(os.args) < 2 {
+        fmt.println("Please enter the day you want to run as an argument.")
+        testing.fail(t)
+        return
+    }
+    
+    day, ok := strconv.parse_int(os.args[1])
+
+    if !ok {
+        fmt.println("Please enter the day you want to run as an argument.")
+        testing.fail(t)
+        return
+    }
+
+    days.test_stage_2(t, day)
 }
