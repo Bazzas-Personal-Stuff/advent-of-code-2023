@@ -1,38 +1,41 @@
 //+private file
 package aoc_days
 
-// DAY_NUMBER :: 1
+// DAY_NUMBER :: 0
 //
-// import "core:log"
 // import "core:testing"
+// import "core:strings"
+// import "core:strconv"
 //
 // stage_1 :: proc(input: []byte) -> int {
-//     return -1
+//     return 0
 // }
 //
 //
 // stage_2 :: proc(input: []byte) -> int {
-//     return -1
+//     return 0
 // }
 //
 // 
 //
-// =============================================================================
-// =============================================================================
-// =============================================================================
+// // =============================================================================
+// // =============================================================================
+// // =============================================================================
 //
-// test :: proc(t: ^testing.T) {
-//     s1_input    := as_bytes(``)
-//     s1_expected := -1
-//     s1_answer   := stage_1(s1_input)
-//
-//     testing.expect_value(t, s1_answer, s1_expected)
-//
-//     s2_input    := as_bytes(``)
-//     s2_expected := -1
-//     s2_answer   := stage_2(s2_input)
+// test_1 :: proc(t: ^testing.T) {
+//     input    := as_bytes(``)
+//     expected := -1
+//     answer   := stage_1(input)
 //     
-//     testing.expect_value(t, s2_answer, s2_expected)
+//     testing.expect_value(t, answer, expected)
+// }
+// 
+// test_2 :: proc(t: ^testing.T) {
+//     input    := as_bytes(``)
+//     expected := -1
+//     answer   := stage_2(input)
+//
+//     testing.expect_value(t, answer, expected)
 // }
 //
 //
@@ -41,6 +44,7 @@ package aoc_days
 //     registry[DAY_NUMBER] = Challenge_Program {
 //         stage_1 = stage_1,
 //         stage_2 = stage_2,
-//         test    = test,
+//         test_1  = test_1,
+//         test_2  = test_2,
 //     }
 // }

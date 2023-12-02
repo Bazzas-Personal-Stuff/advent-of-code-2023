@@ -5,7 +5,6 @@ DAY_NUMBER :: 1
 
 import "core:testing"
 import "core:strings"
-import "core:unicode/utf8"
 import "core:strconv"
 import "core:text/match"
 
@@ -87,28 +86,28 @@ stage_2 :: proc(input: []byte) -> int {
 // =============================================================================
 
 test_1 :: proc(t: ^testing.T) {
-    s1_input    := as_bytes(`1abc2
+    input    := as_bytes(`1abc2
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet`)
-    s1_expected := 142
-    s1_answer   := stage_1(s1_input)
+    expected := 142
+    answer   := stage_1(input)
 
-    testing.expect_value(t, s1_answer, s1_expected)
+    testing.expect_value(t, answer, expected)
 }
 
 test_2 :: proc(t: ^testing.T) {
-    s2_input    := as_bytes(`two1nine
+    input    := as_bytes(`two1nine
 eightwothree
 abcone2threexyz
 xtwone3four
 4nineeightseven2
 zoneight234
 7pqrstsixteen`)
-    s2_expected := 281
-    s2_answer   := stage_2(s2_input)
+    expected := 281
+    answer   := stage_2(input)
     
-    testing.expect_value(t, s2_answer, s2_expected)
+    testing.expect_value(t, answer, expected)
 }
 
 @(init)

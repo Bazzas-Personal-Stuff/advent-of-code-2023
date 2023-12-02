@@ -47,14 +47,22 @@ run :: proc(day: int) {
         return
     }
 
-    fmt.println("===== Day", day, "- Stage 1 =====")
-    fmt.println("Answer:", day_program.stage_1(input), "\n")
+    println("===== Day", day, "- Stage 1 =====")
+    s1_answer := day_program.stage_1(input)
+    println("ANSWER:", s1_answer, "\n")
 
     if day_program.stage_2 == nil {
         return
     }
-    fmt.println("===== Day", day, "- Stage 2 =====")
-    fmt.println("Answer:", day_program.stage_2(input), "\n")
+
+    println("===== Day", day, "- Stage 2 =====")
+    s2_answer := day_program.stage_2(input)
+    println("ANSWER:", s2_answer, "\n")
+
+
+    fmt.printf("===== DAY %2d SUMMARY =====\n", day)
+    fmt.println(" - Stage 1:   ", s1_answer)
+    fmt.println(" - Stage 2:   ", s2_answer)
 
     return
 }
