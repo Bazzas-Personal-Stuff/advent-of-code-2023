@@ -27,9 +27,11 @@ stage_1 :: proc(input: []byte) -> int {
                 last_num = int(char) - '0'
             }
         }
+        
+        println(line)
+        println("First:", first_num, "Last:", last_num)
 
         number := first_num * 10 + last_num
-        println(number, first_num, last_num)
 
         sum += number
     }
@@ -76,7 +78,8 @@ stage_2 :: proc(input: []byte) -> int {
             }
         }
 
-        println("\nFirst:", first_val, "Last:", last_val)
+        println(line)
+        println("First:", first_val, "Last:", last_val)
         sum += first_val * 10 + last_val
     }
 

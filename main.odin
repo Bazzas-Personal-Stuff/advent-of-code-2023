@@ -6,6 +6,7 @@ import "core:log"
 import "core:os"
 import "core:strconv"
 import "core:testing"
+import "core:time"
 
 main :: proc() {
     // TODO: set up logger for verbose mode
@@ -23,13 +24,26 @@ main :: proc() {
     }
 
     days.verbose = true
-    days.run(day)
+    answer_1, answer_2 := days.run(day)
+    fmt.printf("===== DAY %2d SUMMARY =====\n", day)
+    fmt.println(" - Stage 1:   ", answer_1)
+    fmt.println(" - Stage 2:   ", answer_2)
 }
 
 run_all_days :: proc() {
     days.verbose = false
+    stopwatch: time.Stopwatch
+
     for i := 1; days.registry[i] != {}; i += 1{
-        days.run(i)
+        time.stopwatch_reset(&stopwatch)
+        time.stopwatch_start(&stopwatch)
+        answer_1, answer_2 := days.run(i)
+        time.stopwatch_stop(&stopwatch)
+
+        fmt.printf("===== DAY %2d SUMMARY =====\n", i)
+        fmt.println(" -    Time:   ", time.stopwatch_duration(stopwatch))
+        fmt.println(" - Stage 1:   ", answer_1)
+        fmt.println(" - Stage 2:   ", answer_2)
     }
 }
 

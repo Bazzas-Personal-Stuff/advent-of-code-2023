@@ -22,7 +22,7 @@ Stage :: enum {
     _2,
 }
 
-run :: proc(day: int) {
+run :: proc(day: int) -> (s1_answer, s2_answer: int) {
     if day <= 0 || day > 25 {
         fmt.println("Invalid day:", day)
         return
@@ -48,7 +48,7 @@ run :: proc(day: int) {
     }
 
     println("===== Day", day, "- Stage 1 =====")
-    s1_answer := day_program.stage_1(input)
+    s1_answer = day_program.stage_1(input)
     println("ANSWER:", s1_answer, "\n")
 
     if day_program.stage_2 == nil {
@@ -56,13 +56,10 @@ run :: proc(day: int) {
     }
 
     println("===== Day", day, "- Stage 2 =====")
-    s2_answer := day_program.stage_2(input)
+    s2_answer = day_program.stage_2(input)
     println("ANSWER:", s2_answer, "\n")
 
 
-    fmt.printf("===== DAY %2d SUMMARY =====\n", day)
-    fmt.println(" - Stage 1:   ", s1_answer)
-    fmt.println(" - Stage 2:   ", s2_answer)
 
     return
 }
