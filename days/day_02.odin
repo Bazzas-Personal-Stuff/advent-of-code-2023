@@ -6,7 +6,7 @@ DAY_NUMBER :: 2
 import "core:testing"
 import "core:strings"
 import "core:strconv"
-import "core:text/match"
+
 
 stage_1 :: proc(input: []byte) -> int {
     sum := 0
