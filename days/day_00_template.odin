@@ -22,18 +22,18 @@ package aoc_days
 // // =============================================================================
 // // =============================================================================
 //
+// test_input := as_bytes(``)
+//
 // test_1 :: proc(t: ^testing.T) {
-//     input    := as_bytes(``)
 //     expected := -1
-//     answer   := stage_1(input)
+//     answer   := stage_1(test_input)
 //     
 //     testing.expect_value(t, answer, expected)
 // }
 // 
 // test_2 :: proc(t: ^testing.T) {
-//     input    := as_bytes(``)
 //     expected := -1
-//     answer   := stage_2(input)
+//     answer   := stage_2(test_input)
 //
 //     testing.expect_value(t, answer, expected)
 // }
