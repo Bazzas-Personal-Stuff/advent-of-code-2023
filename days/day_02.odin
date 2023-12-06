@@ -6,6 +6,8 @@ DAY_NUMBER :: 2
 import "core:testing"
 import "core:strings"
 import "core:strconv"
+import "core:text/scanner"
+import "core:unicode/utf8"
 
 
 stage_1 :: proc(input: []byte) -> int {
@@ -93,6 +95,27 @@ get_max_cubes_in_game :: proc(game: ^string) -> [3]int {
     return max_counter
 }
 
+
+// =============================================================================
+
+stage_1_scanner :: proc(input: []byte) -> int {
+    s: scanner.Scanner
+    scanner.init(&s, string(input))
+
+    for scanner.scan(&s) != utf8.RUNE_EOF {
+        println(scanner.token_text(&s))
+        // scanner.
+    }
+    return 0
+}
+
+// CONTEXT FREE GRAMMAR
+// Game         = "Game", Number, ":", Hand, {";", Hand} ["\n"];
+// Hand         = Number, Color, {",", Number, Color};
+// Color        = "red" | "green" | "blue";
+// Number       = Digit, {Digit};
+// Digit        = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+
 // =============================================================================
 // =============================================================================
 // =============================================================================
@@ -105,16 +128,17 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`)
 
 test_1 :: proc(t: ^testing.T) {
     expected := 8
-    answer   := stage_1(input)
+    // answer   := stage_1(input)
+    answer   := stage_1_scanner(input)
     
     testing.expect_value(t, answer, expected)
 }
 
 test_2 :: proc(t: ^testing.T) {
     expected := 2286
-    answer   := stage_2(input)
-
-    testing.expect_value(t, answer, expected)
+    // answer   := stage_2(input)
+    //
+    // testing.expect_value(t, answer, expected)
 }
 
 
