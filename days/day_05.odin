@@ -59,13 +59,13 @@ stage_1 :: proc(input: []byte) -> int {
 
 
 stage_2 :: proc(input: []byte) -> int {
-    if true do return 0 // Stage doesn't give the right answer + takes 4:30
+    // TODO: Optimise 
+    if true do return 0 // Current solution takes ~4:30. Comment this line to run it anyway.
 
     input_string := string(input)
     
     seed_ranges := make([dynamic][2]int); defer delete(seed_ranges)
     
-    // First line has seeds
     seeds_line, _ := strings.split_lines_iterator(&input_string)
 
     _, _ = strings.split_iterator(&seeds_line, " ") // Discard "seeds:"
@@ -179,7 +179,7 @@ range_map_insert :: proc(range_map: ^Range_Map, dst_start, src_start, range_leng
 
 range_map_get :: proc(range_map: ^Range_Map, key: int) -> (value: int) {
     for entry in range_map {
-        if key >= entry.src_min && key <= entry.src_max {
+        if key >= entry.src_min && key < entry.src_max {
             return key + entry.dst_offset
         }
     }
